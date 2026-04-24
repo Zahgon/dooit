@@ -22,7 +22,7 @@ class RenderDict(Dict, Generic[T]):
         self.tree = tree
 
     def from_id(self, _id: str) -> T:
-        raise NotImplementedError  # pragma: no cover
+        pass
 
     def __getitem__(self, __key: str) -> T:
         return super().__getitem__(__key)
@@ -38,8 +38,7 @@ class WorkspaceRenderDict(RenderDict[WorkspaceRender]):
     """
 
     def from_id(self, _id: str) -> WorkspaceRender:
-        w = Workspace.from_id(_id)
-        return WorkspaceRender(w, self.tree)
+        pass
 
 
 class TodoRenderDict(RenderDict[TodoRender]):
@@ -48,5 +47,4 @@ class TodoRenderDict(RenderDict[TodoRender]):
     """
 
     def from_id(self, _id: str) -> TodoRender:
-        t = Todo.from_id(_id)
-        return TodoRender(t, self.tree)
+        pass

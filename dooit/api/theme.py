@@ -27,25 +27,4 @@ class DooitThemeBase:
 
     @classmethod
     def to_css(cls) -> str:
-        css = f"""\
-$background1: {cls.background1};
-$background2: {cls.background2};
-$background3: {cls.background3};
-
-$foreground1: {cls.foreground1};
-$foreground2: {cls.foreground2};
-$foreground3: {cls.foreground3};
-
-$red: {cls.red};
-$orange: {cls.orange};
-$yellow: {cls.yellow};
-$green: {cls.green};
-$blue: {cls.blue};
-$purple: {cls.purple};
-$magenta: {cls.magenta};
-
-$primary: {cls.primary};
-$secondary: {cls.secondary};
-"""
-
-        return css
+        pass

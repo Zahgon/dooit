@@ -23,68 +23,48 @@ class VarManager(ApiComponent):
 
     @property
     def always_expand_workspaces(self) -> bool:
-        return self._always_expand_workspaces
+        pass
 
     @always_expand_workspaces.setter
     def always_expand_workspaces(self, value: bool):
-        self._always_expand_workspaces = value
+        pass
 
     @property
     def always_expand_todos(self) -> bool:
-        return self._always_expand_todos
+        pass
 
     @always_expand_todos.setter
     def always_expand_todos(self, value: bool):
-        self._always_expand_todos = value
+        pass
 
     @property
     def show_confirm(self):
-        return self._show_confirm
+        pass
 
     @show_confirm.setter
     def show_confirm(self, value: bool):
-        self._show_confirm = value
+        pass
 
     @property
     def mode(self) -> str:
-        return self.api.app.dooit_mode
+        pass
 
     @property
     def theme(self) -> DooitThemeBase:
-        return self.api.css.theme
+        pass
 
     @property
     def workspaces_tree(self) -> WorkspacesTree:
-        return self.api.app.screen.query_one(WorkspacesTree)
+        pass
 
     @property
     def current_workspace(self) -> Optional[Workspace]:
-        tree = self.api.vars.workspaces_tree
-        if tree.highlighted is None:
-            return None
-
-        return tree.current_model
+        pass
 
     @property
     def todos_tree(self) -> Optional[TodosTree]:
-        todo_switcher = self.api.app.screen.query_one(
-            "#todo_switcher", expect_type=ContentSwitcher
-        )
-        if todo_switcher.visible_content and isinstance(
-            todo_switcher.visible_content, TodosTree
-        ):
-            return todo_switcher.visible_content
+        pass
 
     @property
     def current_todo(self) -> Optional[Todo]:
-        tree = self.todos_tree
-        if tree is None:
-            return
-
-        if tree.highlighted is None:
-            return
-
-        todo = tree.current_model
-        assert isinstance(todo, Todo)
-
-        return todo
+        pass

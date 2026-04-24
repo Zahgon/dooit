@@ -5,7 +5,7 @@ from ..inputs.model_inputs import WorkspaceDescription
 class WorkspaceRender(BaseRenderer[Workspace]):
     @property
     def model(self) -> Workspace:
-        return self._model
+        pass
 
     def post_init(self):
-        self.description = WorkspaceDescription(self.model)
+        pass

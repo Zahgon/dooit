@@ -27,14 +27,13 @@ class NotificationBar(BarBase):
         self.add_class(self.level)
 
     def perform_action(self, cancel: bool):
-        return
+        pass
 
     def on_mount(self):
-        if self.auto_exit:
-            self.app.set_interval(1, self.remove)
+        pass
 
     async def handle_keypress(self, key: str) -> None:
-        self.remove()
+        pass
 
     def render(self) -> RenderableType:
-        return self.message
+        pass

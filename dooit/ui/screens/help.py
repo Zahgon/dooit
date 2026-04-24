@@ -22,7 +22,7 @@ class HelpWidget(Static):
 
 class Header(HelpWidget):
     def render(self) -> RenderableType:
-        return "Welcome to Dooit!"
+        pass
 
 
 class Outro(HelpWidget):
@@ -33,27 +33,7 @@ class Outro(HelpWidget):
     }
 
     def render(self) -> RenderableType:
-        thanks = Text.from_markup(
-            "     Thanks for using Dooit <3",
-            style=self.get_component_rich_style("thanks"),
-        )
-        github = Text.from_markup("You can find this project on  github -> ")
-        go_back = Text.from_markup("     Use  escape  to go back")
-
-        go_back.highlight_words(
-            [" escape "],
-            style=self.get_component_rich_style("exit"),
-        )
-
-        github_link = "'https://www.github.com/dooit-org/dooit'"
-        github.highlight_words(
-            [" github -> "],
-            style=Style.from_meta(
-                {"@click": f"app.open_url({github_link})"},
-            ),
-        )
-
-        return Text() + thanks + "\n" + github + "\n\n" + go_back
+        pass
 
 
 class DooitKeyTable(HelpWidget):
@@ -77,40 +57,7 @@ class DooitKeyTable(HelpWidget):
         self.no_op = no_op
 
     def render(self) -> RenderableType:
-        tables = []
-
-        for group in self.keybinds.groups:
-            t = Table.grid(expand=True, padding=(0, 1))
-            t_title = Text(group, style=self.get_component_rich_style("table-title"))
-            if group:
-                t_title.pad(1)
-
-            t.add_column("key")
-            t.add_column("arrow")
-            t.add_column("description")
-
-            for keybind, func in self.keybinds.get_keybinds_by_group(group):
-                if func.description == "<NOP>":
-                    continue
-
-                keybind = Text(keybind, style=self.get_component_rich_style("keybind"))
-                arrow = Text("->", style=self.get_component_rich_style("arrow"))
-                description = (
-                    Text(
-                        func.description,
-                        style=self.get_component_rich_style("description"),
-                    )
-                    if func
-                    else Text("")
-                )
-
-                t.add_row(keybind, arrow, description)
-
-            tables.append(t_title)
-            tables.append(t)
-            t.add_row()  # padding
-
-        return Group(*tables)
+        pass
 
 
 class HelpScreen(BaseScreen):
@@ -129,18 +76,16 @@ class HelpScreen(BaseScreen):
     ]
 
     def compose(self) -> ComposeResult:
-        yield Header()
-        yield DooitKeyTable(self.api.keys, self.api.no_op)
-        yield Outro()
+        pass
 
     def key_down(self):
-        self.scroll_down()
+        pass
 
     def key_up(self):
-        self.scroll_up()
+        pass
 
     def key_j(self):
-        self.scroll_down()
+        pass
 
     def key_k(self):
-        self.scroll_up()
+        pass

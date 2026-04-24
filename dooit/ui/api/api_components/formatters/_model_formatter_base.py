@@ -12,7 +12,7 @@ class ModelFormatterBase:
         self.setup_formatters()
 
     def get_formatter_store(self) -> FormatterStore:
-        return FormatterStore(self.trigger, self.api)
+        pass
 
     def setup_formatters(self) -> None:  # pragma: no cover
         pass

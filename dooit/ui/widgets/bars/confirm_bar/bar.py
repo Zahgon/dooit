@@ -26,16 +26,10 @@ class ConfirmBar(BarBase):
         self.message = message
 
     def perform_action(self, cancel: bool):
-        if not cancel:
-            self.callback()
+        pass
 
     async def handle_keypress(self, key: str) -> None:
-        cancel = key.lower() != "y"
-        self.dismiss(cancel)
-        if cancel:
-            self.post_message(BarNotification("The items were retained", "info"))
-        else:
-            self.post_message(BarNotification("The items were deleted", "error"))
+        pass
 
     def render(self) -> RenderableType:
-        return self.message
+        pass

@@ -18,33 +18,23 @@ class BaseTree(OptionList, can_focus=True, inherit_bindings=False):
 
     @property
     def api(self) -> "DooitAPI":
-        return self.tui.api
+        pass
 
     @property
     def tui(self) -> "Dooit":
-        from ....ui.tui import Dooit
-
-        assert isinstance(self.app, Dooit)
-        return self.app
+        pass
 
     @property
     @require_highlighted_node
     def node(self) -> Option:
-        assert self.highlighted is not None
-        return self.get_option_at_index(self.highlighted)
+        pass
 
     def action_cursor_down(self) -> None:
-        if self.highlighted == len(self._options) - 1:
-            return
-
-        return super().action_cursor_down()
+        pass
 
     def action_cursor_up(self) -> None:
-        if self.highlighted == 0:
-            return
-
-        return super().action_cursor_up()
+        pass
 
     @on(events.Click)
     def on_click(self, event: events.Click) -> None:
-        event.prevent_default()
+        pass

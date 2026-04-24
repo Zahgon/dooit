@@ -33,15 +33,15 @@ class KeyMatch:
 
     @staticmethod
     def no_match():
-        return KeyMatch(match_type=KeyMatchType.NoMatchFound)
+        pass
 
     @staticmethod
     def multiple_match():
-        return KeyMatch(match_type=KeyMatchType.MultipleMatchFound)
+        pass
 
     @staticmethod
     def match_found(func: DooitFunction):
-        return KeyMatch(match_type=KeyMatchType.MatchFound, function=func)
+        pass
 
 
 class KeyManager(ApiComponent):
@@ -52,16 +52,10 @@ class KeyManager(ApiComponent):
 
     @property
     def groups(self) -> List[str]:
-        return list(
-            sorted(set(func.group for func in self.keybinds["NORMAL"].values() if func))
-        )
+        pass
 
     def get_keybinds_by_group(self, group: str) -> List[Tuple[str, DooitFunction]]:
-        return [
-            (key, func)
-            for key, func in self.keybinds["NORMAL"].items()
-            if func and func.group == group
-        ]
+        pass
 
     def __set_key(
         self,
@@ -71,9 +65,7 @@ class KeyManager(ApiComponent):
         description: Optional[str],
         group: str,
     ) -> None:
-        self.keybinds[mode][key] = DooitFunction(
-            callback, description or callback.__doc__ or "", group
-        )
+        pass
 
     def set(
         self,
@@ -82,46 +74,20 @@ class KeyManager(ApiComponent):
         description: Optional[str] = None,
         group: str = "",
     ) -> None:
-        if isinstance(keys, str):
-            keys = [keys]
-
-        for key in keys:
-            self.__set_key("NORMAL", key, callback, description, group)
+        pass
 
     @property
     def input(self) -> str:
-        formatted = ""
-        for i in self._inputs:
-            if len(i) > 1:
-                formatted += f"<{i}>"
-            else:
-                formatted += i
-
-        return formatted
+        pass
 
     def clear_input(self):
-        self._inputs.clear()
+        pass
 
     def _find_matched_functions(self) -> List[DooitFunction]:
-        keybinds = self.keybinds[self.get_mode()].items()
-        return [func for key, func in keybinds if key.startswith(self.input) and func]
+        pass
 
     def search_for_key(self) -> KeyMatch:
-        matched = self._find_matched_functions()
-        if not matched:
-            self.clear_input()
-            return KeyMatch.no_match()
-
-        if len(matched) > 1 or self.input not in self.keybinds[self.get_mode()]:
-            return KeyMatch.multiple_match()
-
-        self.clear_input()
-        return KeyMatch.match_found(matched[0])
+        pass
 
     def register_key(self, key: str) -> KeyMatch:
-        if key == "escape":
-            self.clear_input()
-            return KeyMatch.no_match()
-
-        self._inputs.append(key)
-        return self.search_for_key()
+        pass

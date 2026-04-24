@@ -9,24 +9,11 @@ def subscribe(*events: Type[DooitEvent]):
     """
     Subscribe decorator for event handlers
     """
-
-    def decorator(func: Callable):
-        attrs = getattr(func, DOOIT_EVENT_ATTR, [])
-        attrs.extend(events)
-
-        setattr(func, DOOIT_EVENT_ATTR, attrs)
-        return func
-
-    return decorator
+    pass
 
 
 def timer(interval: float):
     """
     Timer decorator for event handlers
     """
-
-    def decorator(func: Callable):
-        setattr(func, DOOIT_TIMER_ATTR, interval)
-        return func
-
-    return decorator
+    pass

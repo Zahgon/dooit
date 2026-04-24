@@ -12,21 +12,10 @@ class SearchBar(BarBase):
         self._search.is_editing = True
 
     def perform_action(self, cancel: bool):
-        if cancel:
-            self.callback("")
+        pass
 
     async def handle_keypress(self, key: str) -> None:
-        if key == "enter":
-            self.dismiss(cancel=False)
-
-        elif key == "escape":
-            self.dismiss(cancel=True)
-
-        else:
-            self._search.keypress(key)
-            filter = self._search.value[1:]
-            self.callback(filter)
-            self.refresh()
+        pass
 
     def render(self) -> RenderableType:
-        return self._search.draw()
+        pass

@@ -26,7 +26,7 @@ DEFAULT_CONFIG = BASE_PATH / "utils" / "default_config.py"
 
 
 def is_running_under_pytest() -> bool:
-    return "PYTEST_CURRENT_TEST" in os.environ
+    pass
 
 
 class PluginManager:
@@ -38,44 +38,19 @@ class PluginManager:
         self.app = api.app
 
     def scan(self):
-        load_file(self, DEFAULT_CONFIG)
-        if is_running_under_pytest():
-            return
-
-        load_file(self, self.config)
+        pass
 
     def _update_dooit_value(self, obj, *params):
-        res = obj(self.api, *params)
-        setattr(obj, "__dooit_value", res)
-
-        try:
-            if bar := getattr(self.app, "bar", None):
-                bar.refresh()
-        except NoMatches:
-            pass
+        pass
 
     def on_event(self, event: DooitEvent):
-        matched_events = [
-            e for e in self.events.keys() if issubclass(event.__class__, e)
-        ]
-
-        for e in matched_events:
-            for obj in self.events[e]:
-                self._update_dooit_value(obj, event)
+        pass
 
     def _register_events(self, events: List[Type[DooitEvent]], obj: Callable):
-        for event in events:
-            self.events[event].append(obj)
+        pass
 
     def _register_timer(self, obj: Callable):
-        if interval := getattr(obj, DOOIT_TIMER_ATTR, None):
-            func = partial(self._update_dooit_value, obj)
-            func()
-            self.api.app.set_interval(interval, func)
+        pass
 
     def register(self, obj):
-        if event := getattr(obj, DOOIT_EVENT_ATTR, None):
-            return self._register_events(event, obj)
-
-        if getattr(obj, DOOIT_TIMER_ATTR, None):
-            return self._register_timer(obj)
+        pass

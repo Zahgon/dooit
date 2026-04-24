@@ -21,8 +21,7 @@ class Dashboard(Static):
     items = reactive([], recompose=True)
 
     def compose(self) -> ComposeResult:
-        for i in self.items:
-            yield Label(i)
+        pass
 
     def render(self) -> RenderableType:
-        return ""
+        pass

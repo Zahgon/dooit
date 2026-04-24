@@ -43,158 +43,126 @@ class DooitAPI:
 
     def quit(self):
         """Quit dooit"""
-        self.app.post_message(QuitApp())
+        pass
 
     def notify(self, message: str, level: NotificationType = "info") -> None:
-        self.app.bar_switcher.switch_to_notification(BarNotification(message, level))
+        pass
 
     async def handle_key(self, key: str) -> None:
-        keymatch = self.keys.register_key(key)
-
-        if keymatch.match_type == KeyMatchType.NoMatchFound:
-            await self.focused.handle_keypress(key)
-            return
-
-        if keymatch.match_type == KeyMatchType.MultipleMatchFound:
-            return
-
-        assert keymatch.function is not None
-        try:
-            keymatch.function.callback()
-        except Exception as e:
-            self.app.bar_switcher.switch_to_notification(
-                BarNotification(str(e), "error")
-            )
+        pass
 
     def trigger_event(self, event: DooitEvent):
-        self.plugin_manager.on_event(event)
+        pass
 
     # -----------------------------------------
 
     @property
     def focused(self) -> ModelTree:
-        focused = self.app.focused
-        if isinstance(focused, ModelTree):
-            return focused
-
-        raise ValueError(f"Expected BaseTree, got {type(focused)}")
+        pass
 
     def copy_description_to_clipboard(self):
         """Copy the description of the focused item to the clipboard"""
-
-        self.focused.copy_description_to_clipboard()
+        pass
 
     def copy_model(self):
         """Copy the current highlighted node to clipboard"""
-        self.focused.copy_model_to_clipboard()
+        pass
 
     def paste_model_above(self):
         """Paste the copied node in the list (puts above the highlighted)"""
-        self.focused.paste_model_from_clipboard("above")
+        pass
 
     def paste_model_below(self):
         """Paste the copied node in the list (puts below the highlighted)"""
-        self.focused.paste_model_from_clipboard("below")
+        pass
 
     def switch_focus(self):
         """Switch focus between the workspace and the todo list"""
-
-        if self.app.bar_switcher.is_focused:
-            return
-
-        if w := self.app.focused:
-            w.post_message(SwitchTab())
+        pass
 
     def move_down(self):
         """Move the cursor down in the focused list"""
-
-        self.focused.action_cursor_down()
+        pass
 
     def move_up(self):
         """Move the cursor up in the focused list"""
-
-        self.focused.action_cursor_up()
+        pass
 
     def shift_up(self):
         """Shift the highlighted item up"""
-
-        self.focused.shift_up()
+        pass
 
     def shift_down(self):
         """Shift the highlighted item down"""
-
-        self.focused.shift_down()
+        pass
 
     def go_to_top(self):
         """Move the cursor to the top of the list"""
-        self.focused.action_first()
+        pass
 
     def go_to_bottom(self):
         """Move the cursor to the bottom of the list"""
-        self.focused.action_last()
+        pass
 
     def edit(self, property: str):
         """Start editing a property of the focused item"""
-        self.focused.start_edit(property)
+        pass
 
     def edit_description(self):
         """Start editing the description of the focused item"""
-        return self.edit("description")
+        pass
 
     def edit_due(self):
         """Start editing the due date of the todo"""
-        return self.edit("due")
+        pass
 
     def edit_recurrence(self):
         """Start editing the recurrence of the todo"""
-        return self.edit("recurrence")
+        pass
 
     def edit_effort(self):
-        return self.edit("effort")
+        pass
 
     def add_sibling(self):
         """Add a sibling to highlighted item"""
-        self.focused.add_sibling()
+        pass
 
     def toggle_expand(self):
         """Toggle the expansion of the highlighted item"""
-        self.focused.toggle_expand()
+        pass
 
     def toggle_expand_parent(self):
         """Toggle the expansion of the parent of the highlighted item"""
-        self.focused.toggle_expand_parent()
+        pass
 
     def add_child_node(self):
         """Add a child to the highlighted item"""
-        self.focused.add_child_node()
+        pass
 
     def remove_node(self):
         """Remove the highlighted item"""
-        self.focused.remove_node()
+        pass
 
     def start_search(self):
         """Start a search within the list"""
-        self.focused.start_search()
+        pass
 
     def start_sort(self):
         """Start sorting the siblings of the highlighted item"""
-        self.focused.start_sort()
+        pass
 
     def toggle_complete(self):
         """Toggle the completion of the todo"""
-        if isinstance(self.focused, TodosTree):
-            self.focused.toggle_complete()
+        pass
 
     def increase_urgency(self):
         """Increase the urgency of the todo"""
-        if isinstance(self.focused, TodosTree):
-            self.focused.increase_urgency()
+        pass
 
     def decrease_urgency(self):
         """Decrease the urgency of the todo"""
-        if isinstance(self.focused, TodosTree):
-            self.focused.decrease_urgency()
+        pass
 
     def show_help(self):
         """Show the help screen"""
-        self.focused.show_help()
+        pass

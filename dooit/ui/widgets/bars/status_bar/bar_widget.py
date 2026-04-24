@@ -12,12 +12,7 @@ class StatusBarWidget:
 
     @property
     def value(self) -> str:
-        res = getattr(self.func, "__dooit_value", "")
-
-        if isinstance(res, Text):
-            return res.markup
-
-        return str(res)
+        pass
 
     def render(self) -> TextType:
-        return Text.from_markup(self.value)
+        pass

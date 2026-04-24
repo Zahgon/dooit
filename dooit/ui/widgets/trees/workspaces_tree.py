@@ -25,38 +25,31 @@ class WorkspacesTree(ModelTree[Workspace, WorkspaceRenderDict]):
         super().__init__(model, render_dict)
 
     def _get_parent(self, id: str) -> Optional[Workspace]:
-        return Workspace.from_id(id).parent_workspace
+        pass
 
     def is_node_expaned(self, _id: str) -> bool:
-        return super().is_node_expaned(_id) or self.api.vars.always_expand_workspaces
+        pass
 
     @property
     def formatter(self) -> "WorkspaceFormatter":
-        return self.api.formatter.workspaces
+        pass
 
     @property
     def render_layout(self):
-        return self.api.layouts.workspace_layout
+        pass
 
     def add_workspace(self) -> str:
-        workspace = self.model.add_workspace()
-        renderer = self._renderers[workspace.uuid]
-        self.add_option(Option(renderer.prompt, id=renderer.id))
-        return workspace.uuid
+        pass
 
     def _create_child_node(self) -> Workspace:
-        return self.current_model.add_workspace()
+        pass
 
     def _add_first_item(self) -> Workspace:
-        return self.model.add_workspace()
+        pass
 
     def _remove_node(self) -> None:
-        self.post_message(WorkspaceRemoved(self.current_model))
-        return super()._remove_node()
+        pass
 
     @on(ModelTree.OptionHighlighted)
     def workspace_highlighted(self, event: ModelTree.OptionHighlighted):
-        assert event.option_id
-
-        event.stop()
-        self.post_message(WorkspaceSelected(Workspace.from_id(event.option_id)))
+        pass

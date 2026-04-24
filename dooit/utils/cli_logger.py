@@ -17,39 +17,19 @@ class CliLogger:
         self.print = self.console.print
 
     def _log(self, level: LogLevel, *messages: str) -> None:
-        icon = {
-            LogLevel.SUCCESS: "+",
-            LogLevel.INFO: "+",
-            LogLevel.WARN: "-",
-            LogLevel.ERROR: "!",
-        }[level]
-
-        color = {
-            LogLevel.SUCCESS: "green",
-            LogLevel.INFO: "blue",
-            LogLevel.WARN: "yellow",
-            LogLevel.ERROR: "red",
-        }[level]
-
-        message = Text.assemble(
-            Text(f"[{icon}]", style=Style(color=color, bold=True)),
-            Text(),
-            *[Text.from_markup(f" {message}", style=color) for message in messages],
-        )
-
-        self.print(message)
+        pass
 
     def info(self, *messages: str) -> None:
-        self._log(LogLevel.INFO, *messages)
+        pass
 
     def warn(self, *messages: str) -> None:
-        self._log(LogLevel.WARN, *messages)
+        pass
 
     def error(self, *messages: str) -> None:
-        self._log(LogLevel.ERROR, *messages)
+        pass
 
     def success(self, *messages: str) -> None:
-        self._log(LogLevel.SUCCESS, *messages)
+        pass
 
 
 logger = CliLogger()

@@ -14,7 +14,7 @@ else:
 
 
 def generate_random_id():
-    return uuid4().hex
+    pass
 
 
 class CssManager:
@@ -41,65 +41,28 @@ class CssManager:
         )
 
     def read_css(self) -> str:
-        return self.css_file.read_text()
+        pass
 
     def refresh_css(self):
-        css = self.theme.to_css()
-
-        # setup base variables
-        with open(self.base_css, "r") as f:
-            css = css + "\n" + f.read()
-
-        # inject extra stylesheets
-        self.stylesheets.mkdir(parents=True, exist_ok=True)
-        for sheet in self.stylesheets.iterdir():
-            with open(sheet, "r") as f:
-                css = css + "\n" + f.read()
-
-        self.write(css)
+        pass
 
     def add_theme(self, theme: Type[DooitThemeBase]):
-        self.themes[theme._name] = theme()
-        self.refresh_css()
+        pass
 
     def set_theme(self, theme: Union[str, Type[DooitThemeBase]]):
-        if isinstance(theme, str):
-            self.theme = self.themes.get(theme, DooitThemeBase)
-        else:
-            self.theme = theme()
-
-        self.refresh_css()
+        pass
 
     def inject_css(self, css: str, _id: Optional[str] = None) -> str:
-        uuid = _id or generate_random_id()
-        css_file = self.stylesheets / f"{uuid}.tcss"
-
-        with open(css_file, "w") as f:
-            f.write(css)
-
-        self.refresh_css()
-        return uuid
+        pass
 
     def unject_css(self, _id: str) -> bool:
-        css_file = self.stylesheets / f"{_id}.tcss"
-
-        if not css_file.exists():
-            return False
-
-        css_file.unlink()
-        self.refresh_css()
-        return True
+        pass
 
     def is_active(self, _id: str) -> bool:
-        return (self.stylesheets / f"{_id}.tcss").exists()
+        pass
 
     def write(self, css: str):
-        with open(self.css_file, "w") as f:
-            f.write(css)
+        pass
 
     def cleanup(self):
-        for sheet in self.stylesheets.iterdir():
-            sheet.unlink()
-
-        self.stylesheets.rmdir()
-        self.refresh_css()
+        pass

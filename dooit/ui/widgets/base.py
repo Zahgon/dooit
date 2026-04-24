@@ -18,17 +18,13 @@ class HelperWidget(Widget):
     _status: ModeType
 
     async def hide(self) -> None:
-        self.styles.layer = "L1"
-        self.display = False
-        self.post_message(ModeChanged("NORMAL"))
+        pass
 
     async def start(self) -> None:
-        self.styles.layer = "L4"
-        self.display = True
-        self.post_message(ModeChanged(self._status))
+        pass
 
     async def cancel(self) -> None:
-        await self.hide()
+        pass
 
     async def stop(self):
         pass

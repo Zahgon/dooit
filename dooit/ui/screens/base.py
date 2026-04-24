@@ -19,22 +19,11 @@ class BaseScreen(Screen, inherit_bindings=False):
 
     @property
     def app(self) -> "Dooit":
-        from ..tui import Dooit
-
-        app = super().app
-        assert isinstance(app, Dooit)
-
-        return app
+        pass
 
     @property
     def api(self) -> "DooitAPI":
-        return self.app.api
+        pass
 
     def resolve_key(self, event: events.Key) -> str:
-        if not event.character:
-            return event.key
-
-        if event.is_printable or event.character in self.SPACE_CHARACTERS:
-            return event.character
-
-        return event.key
+        pass

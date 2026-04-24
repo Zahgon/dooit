@@ -26,35 +26,24 @@ class BarBase(Static):
 
     @property
     def app(self) -> "Dooit":
-        from dooit.ui.tui import Dooit
-
-        app = super().app
-        assert isinstance(app, Dooit)
-        return app
+        pass
 
     @property
     def api(self) -> "DooitAPI":  # pragma: no cover
-        return self.app.api
+        pass
 
     @property
     def switcher(self) -> "BarSwitcher":
-        from .bar_switcher import BarSwitcher
-
-        parent = self.parent
-        assert isinstance(parent, BarSwitcher)
-        return parent
+        pass
 
     async def on_unmount(self):
-        self.post_message(ModeChanged("NORMAL"))
-        self.switcher.current = "status_bar"
+        pass
 
     def perform_action(self, cancel: bool):
-        raise NotImplementedError  # pragma: no cover
+        pass
 
     def dismiss(self, cancel: bool):
-        self.perform_action(cancel)
-        self.app.post_message(ModeChanged("NORMAL"))
-        self.remove()
+        pass
 
     async def handle_keypress(self, key: str) -> None:  # pragma: no cover
-        return
+        pass

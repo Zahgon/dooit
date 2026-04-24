@@ -50,181 +50,75 @@ class Todo(DooitModel):
 
     @validates("recurrence")
     def validate_pending(self, key, value):
-        if value is not None:
-            self.pending = True
-
-        return value
+        pass
 
     @classmethod
     def from_id(cls, _id: str) -> "Todo":
-        _id = _id.lstrip("Todo_")
-        query = select(Todo).where(Todo.id == _id)
-        res = manager.session.execute(query).scalars().first()
-        assert res is not None
-        return res
+        pass
 
     @property
     def parent(self) -> Union["Workspace", "Todo"]:
-        assert self.parent_workspace or self.parent_todo
-
-        if self.parent_workspace:
-            return self.parent_workspace
-
-        assert self.parent_todo is not None
-
-        return self.parent_todo
+        pass
 
     @property
     def has_same_parent_kind(self) -> bool:
-        return self.parent_todo is not None
+        pass
 
     @property
     def tags(self) -> List[str]:
-        return [i for i in self.description.split() if i[0] == "@"]
+        pass
 
     @property
     def status(self) -> str:
-        if self.is_completed:
-            return "completed"
-
-        if self.is_overdue:
-            return "overdue"
-
-        return "pending"
+        pass
 
     @property
     def siblings(self) -> List["Todo"]:
-        if self.parent_workspace:
-            return self.parent_workspace.todos
-
-        if self.parent_todo:
-            return self.parent_todo.todos
-
-        return []
+        pass
 
     def sort_siblings(self, field: str):
-        if field != "pending":
-            items = (
-                self.session.query(Todo)
-                .filter_by(
-                    parent_workspace=self.parent_workspace,
-                    parent_todo=self.parent_todo,
-                )
-                .order_by(nulls_last(getattr(Todo, field).asc()))
-                .all()
-            )
-        else:
-            items = sorted(
-                self.siblings,
-                key=lambda x: (
-                    not x.pending,
-                    x.due or datetime.max,
-                    x.order_index,
-                ),
-            )
-
-        for index, todo in enumerate(items):
-            todo.order_index = index
-
-        manager.commit()
+        pass
 
     def add_todo(self) -> "Todo":
-        todo = Todo(parent_todo=self)
-        todo.save()
-        return todo
+        pass
 
     def _add_sibling(self) -> "Todo":
-        todo = Todo(
-            parent_todo=self.parent_todo,
-            parent_workspace=self.parent_workspace,
-            order_index=self.order_index + 1,
-        )
-        todo.save()
-        return todo
+        pass
 
     # ----------- HELPER FUNCTIONS --------------
 
     def increase_urgency(self) -> None:
-        self.urgency += 1
-        self.save()
+        pass
 
     def decrease_urgency(self) -> None:
-        self.urgency -= 1
-        self.save()
+        pass
 
     def toggle_complete(self) -> None:
-        self.pending = not self.pending
-        self.save()
+        pass
 
     def is_due_today(self) -> bool:
-        if not self.due:
-            return False
-
-        return self.due and self.due.day == datetime.today().day
+        pass
 
     @property
     def is_completed(self) -> bool:
-        return self.pending == False
+        pass
 
     @property
     def is_pending(self) -> bool:
-        return self.pending
+        pass
 
     @property
     def is_overdue(self) -> bool:
-        if not self.due:
-            return False
-
-        return self.pending and self.due < datetime.now()
+        pass
 
     @classmethod
     def all(cls) -> List["Todo"]:
-        query = select(Todo)
-        return list(manager.session.execute(query).scalars().all())
+        pass
 
     @staticmethod
     def clone_from_id(id: int, order_index: int) -> "Todo":
-        todo = Todo.from_id(str(id))
-        fields = ["description", "due", "effort", "recurrence", "urgency", "pending"]
-        attrs = {field: getattr(todo, field) for field in fields}
-        attrs.update(
-            {
-                "parent_workspace": todo.parent_workspace,
-                "parent_todo": todo.parent_todo,
-                "order_index": order_index,
-            }
-        )
-        new_todo = Todo(**attrs)
-        new_todo.save()
-
-        # Clone all child todos recursively
-        for i, child_todo in enumerate(todo.todos):
-            attrs = {field: getattr(child_todo, field) for field in fields}
-            attrs["parent_todo"] = new_todo
-            child_clone = Todo(**attrs)
-            child_clone.save()
-
-            # Recursively clone any nested todos
-            for grandchild in child_todo.todos:
-                Todo._clone_todo_recursively(grandchild, child_clone)
-
-        return new_todo
+        pass
 
     @staticmethod
     def _clone_todo_recursively(source_todo: "Todo", parent_clone: "Todo") -> None:
-        fields = [
-            "description",
-            "due",
-            "effort",
-            "recurrence",
-            "urgency",
-            "pending",
-            "order_index",
-        ]
-        attrs = {field: getattr(source_todo, field) for field in fields}
-        attrs["parent_todo"] = parent_clone
-        todo_clone = Todo(**attrs)
-        todo_clone.save()
-
-        for child in source_todo.todos:
-            Todo._clone_todo_recursively(child, todo_clone)
+        pass

@@ -10,9 +10,8 @@ class Clipboard:
     data = None
 
     def copy(self, widget: TodoWidget):
-        model: DooitModel = widget.model
-        self.data = model.commit()
+        pass
 
     @property
     def has_data(self) -> bool:
-        return bool(self.data)
+        pass

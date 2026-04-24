@@ -4,22 +4,15 @@ from dooit.ui.widgets.trees import TodosTree, WorkspacesTree
 
 class TodoFormatter(ModelFormatterBase):
     def setup_formatters(self):
-        self.description = self.get_formatter_store()
-        self.due = self.get_formatter_store()
-        self.effort = self.get_formatter_store()
-        self.recurrence = self.get_formatter_store()
-        self.urgency = self.get_formatter_store()
-        self.status = self.get_formatter_store()
+        pass
 
     def trigger(self) -> None:
-        for widget in self.api.app.screen.query(TodosTree):
-            widget.force_refresh()
+        pass
 
 
 class WorkspaceFormatter(ModelFormatterBase):
     def setup_formatters(self):
-        self.description = self.get_formatter_store()
+        pass
 
     def trigger(self) -> None:
-        for widget in self.api.app.screen.query(WorkspacesTree):
-            widget.force_refresh()
+        pass

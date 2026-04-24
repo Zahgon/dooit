@@ -24,58 +24,40 @@ class TodosTree(ModelTree[Model, TodoRenderDict]):
         super().__init__(model, TodoRenderDict(self))
 
     def _get_parent(self, id: str) -> Optional[Todo]:
-        return Todo.from_id(id).parent_todo
+        pass
 
     def is_node_expaned(self, _id: str) -> bool:
-        return super().is_node_expaned(_id) or self.api.vars.always_expand_todos
+        pass
 
     @property
     def formatter(self) -> "TodoFormatter":
-        return self.api.formatter.todos
+        pass
 
     @property
     def render_layout(self):
-        return self.api.layouts.todo_layout
+        pass
 
     def add_todo(self) -> str:
-        todo = self.model.add_todo()
-        render = TodoRender(todo, tree=self)
-        self.add_option(Option(render.prompt, id=render.id))
-        return todo.uuid
+        pass
 
     def _add_first_item(self) -> Todo:
-        return self.model.add_todo()
+        pass
 
     def _create_child_node(self) -> Todo:
-        return self.current_model.add_todo()
+        pass
 
     def _remove_node(self) -> None:
-        assert isinstance(self.current_model, Todo)
-        self.post_message(TodoRemoved(self.current_model))
-
-        return super()._remove_node()
+        pass
 
     def toggle_complete(self):
-        assert isinstance(self.current_model, Todo)
-
-        self.current_model.toggle_complete()
-        self.refresh_options()
+        pass
 
     def increase_urgency(self):
-        assert isinstance(self.current_model, Todo)
-
-        self.current_model.increase_urgency()
-        self.update_current_prompt()
+        pass
 
     def decrease_urgency(self):
-        assert isinstance(self.current_model, Todo)
-
-        self.current_model.decrease_urgency()
-        self.update_current_prompt()
+        pass
 
     @on(ModelTree.OptionHighlighted)
     def todo_highlighted(self, event: ModelTree.OptionHighlighted):
-        assert event.option_id
-
-        event.stop()
-        self.post_message(TodoSelected(Todo.from_id(event.option_id)))
+        pass
